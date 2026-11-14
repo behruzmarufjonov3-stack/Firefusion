@@ -21,7 +21,8 @@ import {
   Moon,
   Calendar,
   Flame,
-  MapPin
+  MapPin,
+  FileDown
 } from 'lucide-react';
 
 const summaryData = rawSummaryData as unknown as SummaryDataset;
@@ -143,6 +144,23 @@ export const App: React.FC = () => {
               <Award className="w-3.5 h-3.5 text-orange-500" />
               <span>{t.nav.submission}</span>
             </button>
+
+            {/* 5. Official PDF Report Download */}
+            <a
+              href="./FireFusion_NASA_Space_Apps_2026_Report.pdf"
+              download="FireFusion_NASA_Space_Apps_2026_Report.pdf"
+              target="_blank"
+              rel="noreferrer"
+              title="Download Official 5-Page Technical Report (PDF)"
+              className={`px-3 py-1.5 rounded-lg border flex items-center space-x-1.5 transition-all cursor-pointer ${
+                isDark
+                  ? 'border-[#1E2638] bg-[#0E131E] text-zinc-300 hover:text-white hover:border-orange-500'
+                  : 'border-slate-300 bg-white text-slate-700 hover:text-slate-900 hover:border-orange-500 shadow-sm'
+              }`}
+            >
+              <FileDown className="w-3.5 h-3.5 text-orange-500" />
+              <span>PDF Report</span>
+            </a>
           </div>
         </div>
 
