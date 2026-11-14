@@ -35,6 +35,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_METEOMATICS_USER: ${{ secrets.METEOMATICS_USER }}
+          VITE_METEOMATICS_PASSWORD: ${{ secrets.METEOMATICS_PASSWORD }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

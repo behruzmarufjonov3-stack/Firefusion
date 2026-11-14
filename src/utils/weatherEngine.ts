@@ -62,24 +62,24 @@ export function computeFireWeatherRisk(
 
 /**
  * Returns weather telemetry for any fire event.
- * If credentials are provided in browser session, can query Meteomatics API on demand.
- * Otherwise returns verified meteorological data without exposing any secrets.
+ * Uses environment credentials if provided in GitHub Secrets / .env,
+ * otherwise returns verified meteorological data without exposing any credentials.
  */
 export async function getEventWeather(event: HarmonizedFireEvent): Promise<WeatherTelemetry> {
   if (event.weather) {
     return event.weather;
   }
 
-  // Check if user has entered Meteomatics credentials in local session
-  const sessionUser = typeof window !== 'undefined' ? sessionStorage.getItem('METEOMATICS_USER') : null;
-  const sessionPass = typeof window !== 'undefined' ? sessionStorage.getItem('METEOMATICS_PASS') : null;
+  // Check if credentials are provided via GitHub environment / build secrets
+  const meta = import.meta as any;
+  const envUser = meta.env?.VITE_METEOMATICS_USER;
+  const envPass = meta.env?.VITE_METEOMATICS_PASSWORD;
 
-  // Secure on-demand live fetch if credentials exist in user's browser session
-  if (sessionUser && sessionPass) {
+  if (envUser && envPass) {
     try {
       const dateIso = `${event.date}T00:00:00Z`;
       const url = `https://api.meteomatics.com/${dateIso}/t_2m:C,wind_speed_10m:ms,relative_humidity_2m:p,precip_1h:mm/${event.lat},${event.lon}/json`;
-      const authHeader = 'Basic ' + btoa(`${sessionUser}:${sessionPass}`);
+      const authHeader = 'Basic ' + btoa(`${envUser}:${envPass}`);
       const res = await fetch(url, { headers: { Authorization: authHeader } });
       if (res.ok) {
         const json = await res.json();
@@ -97,11 +97,11 @@ export async function getEventWeather(event: HarmonizedFireEvent): Promise<Weath
           spread_risk_score: risk.spread_risk_score,
           spread_risk_category: risk.spread_risk_category,
           fuel_moisture_level: risk.fuel_moisture_level,
-          source: 'Meteomatics Live API (Authenticated)'
+          source: 'Meteomatics Live API'
         };
       }
     } catch (e) {
-      console.warn('Meteomatics live query fell back to verified telemetry:', e);
+      console.warn('Meteomatics query fell back to verified regional telemetry:', e);
     }
   }
 
