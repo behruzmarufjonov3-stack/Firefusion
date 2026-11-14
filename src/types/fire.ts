@@ -4,6 +4,17 @@ export type FAILevel = 100 | 90 | 75 | 50 | 25;
 
 export type RiskCategory = 'Low' | 'Moderate' | 'High' | 'Extreme';
 
+export interface WeatherTelemetry {
+  temperature_c: number;
+  wind_speed_ms: number;
+  relative_humidity_pct: number;
+  precipitation_1h_mm: number;
+  spread_risk_score: number; // 0 to 100
+  spread_risk_category: 'Low' | 'Moderate' | 'High' | 'Extreme';
+  fuel_moisture_level: 'High' | 'Moderate' | 'Dry' | 'Critical';
+  source: string;
+}
+
 export interface HarmonizedFireEvent {
   id: string;
   lat: number;
@@ -19,6 +30,7 @@ export interface HarmonizedFireEvent {
   brightness: number;
   fai: FAILevel;
   region: string;
+  weather?: WeatherTelemetry;
 }
 
 export interface AnomalyItem {

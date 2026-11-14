@@ -99,6 +99,20 @@ For any selected region, monthly records from 2012 to 2026 are evaluated against
   - `High`: 75th to 90th percentile (significantly above historical average).
   - `Extreme`: $\ge 90\text{th}$ percentile (approaching or exceeding historical records).
 
+### Atmospheric Telemetry & Fire Weather Index (Meteomatics Integration)
+While satellite FRP confirms where fires are currently burning, atmospheric conditions determine flame front progression and fuel flammability:
+- **2m Air Temperature (`t_2m:C`):** Ambient thermal conditions driving fuel pre-heating.
+- **2m Relative Humidity (`relative_humidity_2m:p`):** Directly controls fine dead fuel moisture content ($RH > 80\%$ suppresses ignition; $RH < 30\%$ triggers red-flag flammability).
+- **10m Wind Speed (`wind_speed_10m:ms`):** Dictates flame tilt angle, convective oxygen supply, and ember spotting range.
+- **1h Precipitation (`precip_1h:mm`):** Surface rain suppression and canopy dampening.
+
+FireFusion calculates a physical **Fire Weather Spread Risk Index (0–100)** and fuel moisture classification (`High`, `Moderate`, `Dry`, `Critical`).
+
+#### Zero-Leak Security Architecture for Weather APIs:
+- **Zero API Key Exposure:** No credentials, usernames, or passwords are hardcoded in source code, committed to Git, or exposed in public bundles.
+- **Session-Only Memory Storage:** Evaluators and operators may enter Meteomatics credentials on-demand through the secure UI key modal. Credentials reside strictly in browser `sessionStorage` in client memory and are wiped when the tab closes.
+- **Offline Meteorological Fallback:** Verified atmospheric station profiles are precomputed for all sample event clusters so the site operates seamlessly without requiring external credentials.
+
 ---
 
 ## 4. Reproducibility & Sensitivity Analysis
@@ -195,6 +209,7 @@ npm run preview
   - VIIRS VJ114IMGTDL Active Fire 375m Product (NOAA-20 / JPSS-1).
   - VIIRS VJ214IMGTDL Active Fire 375m Product (NOAA-21 / JPSS-2).
 - **Basemap:** Esri World Dark Gray & Light Gray Canvas.
+- **Meteorology:** Meteomatics Weather API (2m Temperature, 10m Wind Speed, 2m Relative Humidity, 1h Precipitation).
 
 ### Artificial Intelligence (AI) Disclosure
 In compliance with NASA Space Apps Challenge guidelines:

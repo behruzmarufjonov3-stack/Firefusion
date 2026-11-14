@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { RawFireRecord, harmonizeRawDetections } from '../utils/harmonization';
 import { HarmonizedFireEvent } from '../types/fire';
 import { Translations } from '../i18n/translations';
+import { WeatherDiagnosticsCard } from './WeatherDiagnosticsCard';
 import { Cpu, Upload, Play, Sliders, MapPin } from 'lucide-react';
 
 interface HarmonizationSandboxProps {
@@ -435,6 +436,15 @@ export const HarmonizationSandbox: React.FC<HarmonizationSandboxProps> = ({
                 <MapPin className="w-3.5 h-3.5" />
                 <span>{t.harmonizer.viewOnMap}</span>
               </button>
+            </div>
+          )}
+
+          {selectedHarmonizedEvent && (
+            <div className="mt-2.5">
+              <WeatherDiagnosticsCard
+                event={selectedHarmonizedEvent}
+                theme={theme}
+              />
             </div>
           )}
         </div>

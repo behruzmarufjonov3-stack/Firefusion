@@ -4,6 +4,7 @@ import { MockupMap } from './components/MockupMap';
 import { ActivityHeatmap } from './components/ActivityHeatmap';
 import { Gauge } from './components/Gauge';
 import { BurningCalendar } from './components/BurningCalendar';
+import { WeatherDiagnosticsCard } from './components/WeatherDiagnosticsCard';
 import { HarmonizationSandbox } from './components/HarmonizationSandbox';
 import { PresentationGuide } from './components/PresentationGuide';
 import { translations, Language } from './i18n/translations';
@@ -426,6 +427,13 @@ export const App: React.FC = () => {
               </p>
             </div>
           </div>
+
+          {/* Atmospheric & Weather Telemetry Card (Meteomatics Integration) */}
+          <WeatherDiagnosticsCard
+            event={selectedEvent}
+            theme={theme}
+            language={language}
+          />
         </div>
       </div>
       )}
