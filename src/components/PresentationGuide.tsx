@@ -55,35 +55,6 @@ AI language models were utilized as development accelerators for brainstorming i
 
   return (
     <div className="space-y-4 font-mono text-xs">
-      {/* Download PDF Technical Report Banner */}
-      <div className={`p-4 border rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3 ${
-        isDark ? 'bg-orange-500/10 border-orange-500/30 text-white' : 'bg-orange-50 border-orange-300 text-slate-900'
-      }`}>
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-lg bg-orange-500 text-white flex items-center justify-center shrink-0 shadow-md">
-            <FileDown className="w-5 h-5" />
-          </div>
-          <div>
-            <div className="font-bold text-sm text-orange-500">
-              Official NASA Space Apps Technical Report (PDF)
-            </div>
-            <div className={`text-[11px] ${isDark ? 'text-zinc-400' : 'text-slate-600'}`}>
-              5-Page Comprehensive Publication Report • Includes Methodology, FAI Formulas, Sensitivity Tables & Climatology
-            </div>
-          </div>
-        </div>
-
-        <a
-          href="./FireFusion_NASA_Space_Apps_2026_Report.pdf"
-          download="FireFusion_NASA_Space_Apps_2026_Report.pdf"
-          target="_blank"
-          rel="noreferrer"
-          className="px-4 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-bold flex items-center space-x-1.5 transition-all shadow-md cursor-pointer whitespace-nowrap"
-        >
-          <FileDown className="w-4 h-4" />
-          <span>Download Report (PDF)</span>
-        </a>
-      </div>
       <div className={`border rounded-lg p-4 transition-colors ${cardBg}`}>
         <div className={`flex items-center space-x-2 text-sm font-bold ${mainTextColor}`}>
           <Award className="w-4 h-4 text-orange-500" />
