@@ -3,10 +3,12 @@ import { sampleEvents } from './data/sample_events';
 import { MockupMap } from './components/MockupMap';
 import { ActivityHeatmap } from './components/ActivityHeatmap';
 import { Gauge } from './components/Gauge';
+import { BurningCalendar } from './components/BurningCalendar';
 import { HarmonizationSandbox } from './components/HarmonizationSandbox';
 import { PresentationGuide } from './components/PresentationGuide';
 import { translations, Language } from './i18n/translations';
-import { HarmonizedFireEvent } from './types/fire';
+import { HarmonizedFireEvent, SummaryDataset } from './types/fire';
+import rawSummaryData from './data/summary.json';
 import {
   MoreHorizontal,
   AlertTriangle,
@@ -15,64 +17,47 @@ import {
   Award,
   Globe,
   Sun,
-  Moon
+  Moon,
+  Calendar,
+  Flame,
+  MapPin
 } from 'lucide-react';
+
+const summaryData = rawSummaryData as unknown as SummaryDataset;
 
 export const App: React.FC = () => {
   // 1. Language State
-  const [language, setLanguage] = useState<Language>('uz');
+  const [language, setLanguage] = useState<Language>('en');
   // 2. Theme State (Dark / Light)
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
-  // 3. Region State
-  const [selectedRegion, setSelectedRegion] = useState<'amazon' | 'indonesia' | 'global'>('amazon');
-  // 4. Modals State
+  // 3. Navigation View: 'map' | 'calendar'
+  const [activeNav, setActiveNav] = useState<'map' | 'calendar'>('map');
+  // 4. Region State
+  const [selectedRegion, setSelectedRegion] = useState<'amazon' | 'indonesia' | 'central_asia' | 'global'>('amazon');
+  // 5. Modals State
   const [showSandboxModal, setShowSandboxModal] = useState(false);
   const [showSubmissionModal, setShowSubmissionModal] = useState(false);
-  // 5. Selected fire event for dynamic telemetry & map focus
+  // 6. Selected fire event for dynamic telemetry & map focus
   const [customEvents, setCustomEvents] = useState<HarmonizedFireEvent[]>([]);
   const [selectedEvent, setSelectedEvent] = useState<HarmonizedFireEvent | null>(null);
 
   const t = translations[language] || translations.en;
   const isDark = theme === 'dark';
 
-  // Regional metrics (Exact values from user's target mockup screenshot)
-  const regionMetrics = {
-    amazon: {
-      detections: '124,580',
-      harmonized: '38,412',
-      dedupRate: '69%',
-      avgFrp: '34.2 MW',
-      fai: '89/100',
-      riskScore: 78,
-      anomalyText: language === 'uz'
-        ? 'Ko‘p datchikli anomaliya aniqlandi: faol yong‘inlar o‘rtacha me’yordan yuqori.'
-        : 'Anomaly compact multihazard multi-sensor cluster automatic fire hs map.'
-    },
-    indonesia: {
-      detections: '124,580',
-      harmonized: '38,412',
-      dedupRate: '69%',
-      avgFrp: '34.2 MW',
-      fai: '89/100',
-      riskScore: 78,
-      anomalyText: language === 'uz'
-        ? 'Ko‘p datchikli anomaliya aniqlandi: faol yong‘inlar o‘rtacha me’yordan yuqori.'
-        : 'Anomaly compact multihazard multi-sensor cluster automatic fire hs map.'
-    },
-    global: {
-      detections: '733,470',
-      harmonized: '321,540',
-      dedupRate: '56%',
-      avgFrp: '14.4 MW',
-      fai: '55/100',
-      riskScore: 61,
-      anomalyText: language === 'uz'
-        ? 'Global klaster xavfi: kuniga 56,000 dan ortiq faol o‘choqlar aniqlanmoqda.'
-        : 'Global cluster density warning: 56,000+ daily harmonized fire events detected.'
-    }
-  };
+  // Dynamic regional summary from verified FIRMS datasets
+  const currentSummary = summaryData[selectedRegion] || summaryData.amazon;
 
-  const current = regionMetrics[selectedRegion] || regionMetrics.amazon;
+  const current = {
+    detections: currentSummary.total_raw_detections.toLocaleString(),
+    harmonized: currentSummary.total_harmonized_events.toLocaleString(),
+    dedupRate: `${currentSummary.deduplication_rate_pct.toFixed(1)}%`,
+    avgFrp: `${currentSummary.avg_frp.toFixed(1)} MW`,
+    fai: `${Math.round(currentSummary.avg_fai)}/100`,
+    riskScore: currentSummary.calendar?.[0]?.risk_index || 75,
+    anomalyText: language === 'uz'
+      ? `Ko‘p datchikli anomaliya aniqlandi: ${currentSummary.total_raw_detections.toLocaleString()} ta xom signaldan ${currentSummary.total_harmonized_events.toLocaleString()} ta mustaqil yong‘in o‘chog‘i ajratildi.`
+      : `Harmonized Multi-Sensor Anomaly: ${currentSummary.total_raw_detections.toLocaleString()} raw hotspots filtered into ${currentSummary.total_harmonized_events.toLocaleString()} confirmed physical fire events.`
+  };
 
   // Filter available events for map, including user simulated/uploaded custom events
   const allAvailableEvents = [...customEvents, ...sampleEvents];
@@ -160,9 +145,41 @@ export const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Region & Stream Status Bar (Exact Mockup Match) */}
-        <div className={`mt-3 flex flex-wrap items-center justify-between gap-2 border p-2 px-3.5 rounded-xl ${borderBar}`}>
-          <div className="flex items-center space-x-3 text-xs font-mono">
+        {/* Region & Navigation Switcher Bar */}
+        <div className={`mt-3 flex flex-wrap items-center justify-between gap-3 border p-2 px-3.5 rounded-xl ${borderBar}`}>
+          {/* Main View Segmented Control */}
+          <div className="flex items-center space-x-2 text-xs font-mono">
+            <button
+              onClick={() => setActiveNav('map')}
+              className={`px-3 py-1.5 rounded-lg border flex items-center space-x-1.5 transition-all cursor-pointer ${
+                activeNav === 'map'
+                  ? 'bg-orange-500 text-white font-bold border-orange-400 shadow-sm'
+                  : isDark
+                  ? 'border-zinc-800 bg-black/40 text-zinc-400 hover:text-white'
+                  : 'border-slate-200 bg-slate-50 text-slate-700 hover:text-slate-900'
+              }`}
+            >
+              <MapPin className="w-3.5 h-3.5" />
+              <span>{language === 'uz' ? 'Yong‘in Xaritasi' : 'Fire Map & GIS'}</span>
+            </button>
+
+            <button
+              onClick={() => setActiveNav('calendar')}
+              className={`px-3 py-1.5 rounded-lg border flex items-center space-x-1.5 transition-all cursor-pointer ${
+                activeNav === 'calendar'
+                  ? 'bg-orange-500 text-white font-bold border-orange-400 shadow-sm'
+                  : isDark
+                  ? 'border-zinc-800 bg-black/40 text-zinc-400 hover:text-white'
+                  : 'border-slate-200 bg-slate-50 text-slate-700 hover:text-slate-900'
+              }`}
+            >
+              <Calendar className="w-3.5 h-3.5" />
+              <span>{language === 'uz' ? 'Yong‘in Faolligi Taqvimi' : 'Burning Activity Calendar'}</span>
+            </button>
+          </div>
+
+          {/* Region Filter Buttons */}
+          <div className="flex flex-wrap items-center space-x-2 text-xs font-mono">
             <span className={textSub}>Region:</span>
 
             <button
@@ -176,7 +193,7 @@ export const App: React.FC = () => {
               }`}
             >
               {selectedRegion === 'amazon' && <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>}
-              <span>Amazon Basin</span>
+              <span>Amazon</span>
             </button>
 
             <button
@@ -191,6 +208,20 @@ export const App: React.FC = () => {
             >
               {selectedRegion === 'indonesia' && <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>}
               <span>Indonesia</span>
+            </button>
+
+            <button
+              onClick={() => setSelectedRegion('central_asia')}
+              className={`px-3 py-1 rounded-full transition-all cursor-pointer flex items-center space-x-1.5 ${
+                selectedRegion === 'central_asia'
+                  ? isDark
+                    ? 'border border-zinc-300 text-white font-medium bg-[#131926] shadow-inner'
+                    : 'border border-slate-400 text-slate-900 font-semibold bg-slate-100 shadow-inner'
+                  : `${textSub} hover:opacity-100 bg-transparent`
+              }`}
+            >
+              {selectedRegion === 'central_asia' && <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>}
+              <span>Central Asia</span>
             </button>
 
             <button
@@ -215,10 +246,21 @@ export const App: React.FC = () => {
         </div>
       </header>
 
-      {/* Main 2-Column Dashboard (Split Screen) */}
-      <div className="flex flex-col lg:flex-row gap-3.5 flex-1 items-stretch">
-        {/* Left Column: Interactive GIS Map (~64% width) */}
-        <div className={`w-full lg:w-[64%] border rounded-2xl relative overflow-hidden flex flex-col min-h-[560px] shadow-2xl ${cardBg}`}>
+      {/* Main Content Area: Tab Switch between Map & Burning Activity Calendar */}
+      {activeNav === 'calendar' ? (
+        <div className="flex-1 mt-1">
+          <BurningCalendar
+            summary={currentSummary}
+            selectedRegion={selectedRegion}
+            onRegionChange={(r) => setSelectedRegion(r as any)}
+            t={t}
+            theme={theme}
+          />
+        </div>
+      ) : (
+        <div className="flex flex-col lg:flex-row gap-3.5 flex-1 items-stretch">
+          {/* Left Column: Interactive GIS Map (~64% width) */}
+          <div className={`w-full lg:w-[64%] border rounded-2xl relative overflow-hidden flex flex-col min-h-[560px] shadow-2xl ${cardBg}`}>
           <MockupMap
             events={filteredEvents}
             selectedRegion={selectedRegion}
@@ -306,6 +348,24 @@ export const App: React.FC = () => {
 
               {/* Heatmap Matrix */}
               <ActivityHeatmap theme={theme} />
+
+              {/* Multi-Year Burning Activity Calendar Button */}
+              <div className="mt-3 pt-2.5 border-t border-zinc-800/40">
+                <button
+                  onClick={() => setActiveNav('calendar')}
+                  className={`w-full py-2 px-3 rounded-lg border text-xs font-mono flex items-center justify-between transition-all cursor-pointer ${
+                    isDark
+                      ? 'border-orange-500/30 bg-orange-500/10 text-orange-400 hover:bg-orange-500/20'
+                      : 'border-orange-400 bg-orange-50 text-orange-700 hover:bg-orange-100'
+                  }`}
+                >
+                  <span className="flex items-center space-x-1.5 font-bold">
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>{language === 'uz' ? 'Ko‘p Yillik Yong‘in Taqvimi (2012–2026)' : 'Multi-Year Burning Calendar (2012–2026)'}</span>
+                  </span>
+                  <span className="font-bold">➔</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -368,6 +428,7 @@ export const App: React.FC = () => {
           </div>
         </div>
       </div>
+      )}
 
       {/* CSV Harmonizer Modal (Accessible via top button or Top KPI "..." button) */}
       {showSandboxModal && (
@@ -423,6 +484,36 @@ export const App: React.FC = () => {
           </div>
         </div>
       )}
+      {/* Footer & Credits Section (Priority 4) */}
+      <footer className={`mt-6 pt-4 pb-2 border-t text-xs font-mono transition-colors ${
+        isDark ? 'border-zinc-800/80 text-zinc-500' : 'border-slate-200 text-slate-500'
+      }`}>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-3">
+          <div className="space-y-1 text-center md:text-left">
+            <div>
+              <span className="font-bold text-orange-500">FireFusion</span> — NASA Space Apps Challenge 2026 Submission
+            </div>
+            <div className="text-[11px] opacity-80">
+              Data: <a href="https://firms.modaps.eosdis.nasa.gov/" target="_blank" rel="noreferrer" className="underline hover:text-orange-500">NASA FIRMS</a> (MODIS MCD14DL, VIIRS VNP14IMGTDL, VJ114IMGTDL, VJ214IMGTDL) • Basemap: <a href="https://www.esri.com/" target="_blank" rel="noreferrer" className="underline hover:text-orange-500">Esri</a> • Engine: React, TypeScript, Leaflet
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-4 text-[11px]">
+            <a
+              href="https://github.com/behruzmarufjonov3-stack/Firefusion"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-orange-500 underline flex items-center space-x-1"
+            >
+              <span>GitHub Repository</span>
+            </a>
+            <span>•</span>
+            <span title="Client-side static execution. Zero telemetry or personal data tracking.">
+              Privacy: 100% Client-Side
+            </span>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

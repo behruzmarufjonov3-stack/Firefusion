@@ -62,6 +62,19 @@ export interface Translations {
     rawDetectionsLabel: string;
     avgFrpLabel: string;
     anomalyAlert: string;
+    heatmapMatrixTitle: string;
+    climatologyTitle: string;
+    recordYearsTitle: string;
+    statusAboveAverage: string;
+    statusBelowAverage: string;
+    percentileRank: string;
+    calibratedCount: string;
+    rawDetections: string;
+    totalFrpLabel: string;
+    baselineAverage: string;
+    sensorCalibrationTitle: string;
+    monthDetailsTitle: string;
+    selectMonthHint: string;
   };
   harmonizer: {
     title: string;
@@ -165,7 +178,20 @@ export const translations: Record<Language, Translations> = {
       trueEventsLabel: "Harmonized Events:",
       rawDetectionsLabel: "Raw Hotspots:",
       avgFrpLabel: "Avg Radiative Power:",
-      anomalyAlert: "Operational Anomaly Alert:"
+      anomalyAlert: "Operational Anomaly Alert:",
+      heatmapMatrixTitle: "YEAR × MONTH BURNING ACTIVITY HEATMAP (2012–2026)",
+      climatologyTitle: "14-YEAR MONTHLY CLIMATOLOGY & TREND ENVELOPE",
+      recordYearsTitle: "HISTORICAL RECORD FIRE SEASONS",
+      statusAboveAverage: "ABOVE HISTORICAL AVERAGE",
+      statusBelowAverage: "BELOW HISTORICAL AVERAGE",
+      percentileRank: "Percentile Rank:",
+      calibratedCount: "Calibrated Hotspots (MODIS-equiv):",
+      rawDetections: "Raw Detections:",
+      totalFrpLabel: "Total FRP:",
+      baselineAverage: "14-Yr Baseline Mean:",
+      sensorCalibrationTitle: "Sensor Cross-Calibration (VIIRS ➔ MODIS scale):",
+      monthDetailsTitle: "Monthly Historical Telemetry Breakdown",
+      selectMonthHint: "Click any month cell to inspect telemetry details"
     },
     harmonizer: {
       title: "LIVE HARMONIZATION ENGINE & CSV TEST BENCH",
@@ -267,7 +293,20 @@ export const translations: Record<Language, Translations> = {
       trueEventsLabel: "Haqiqiy o‘choqlar:",
       rawDetectionsLabel: "Xom signallar:",
       avgFrpLabel: "O‘rtacha olov kuchi:",
-      anomalyAlert: "Favqulodda anomaliya ogohlantirishi:"
+      anomalyAlert: "Favqulodda anomaliya ogohlantirishi:",
+      heatmapMatrixTitle: "YILLAR VA OYLAR BO‘YICHA YONG‘IN TAQVIMI (2012–2026)",
+      climatologyTitle: "14 YILLIK OYLIK KLIMATOLOGIYA VA ME’YORIY O‘ZGARISHLAR",
+      recordYearsTitle: "TARIXIY REKORD YONG‘IN MAVSUMLARI",
+      statusAboveAverage: "TARIXIY O‘RTACHADAN YUQORI",
+      statusBelowAverage: "TARIXIY O‘RTACHADAN PAST",
+      percentileRank: "Persentil darajasi:",
+      calibratedCount: "Kalibrlangan o‘choqlar (MODIS ekvivalent):",
+      rawDetections: "Xom signallar:",
+      totalFrpLabel: "Jami FRP quvvati:",
+      baselineAverage: "14 yillik o‘rtacha me’yor:",
+      sensorCalibrationTitle: "Sensorlarni o‘zaro kalibrlash (VIIRS ➔ MODIS shkalasi):",
+      monthDetailsTitle: "Oylik telemetriya va anomaliya tahlili",
+      selectMonthHint: "Tafsilotlarni ko‘rish uchun istalgan oy katakchasini bosing"
     },
     harmonizer: {
       title: "JONLI HARMONIZATSIYA VA CSV FAYLNI SINASH LABORATORIYASI",
@@ -369,7 +408,20 @@ export const translations: Record<Language, Translations> = {
       trueEventsLabel: "Реальных очагов:",
       rawDetectionsLabel: "Сырых детекций:",
       avgFrpLabel: "Ср. мощность (FRP):",
-      anomalyAlert: "Оперативное предупреждение об аномалии:"
+      anomalyAlert: "Оперативное предупреждение об аномалии:",
+      heatmapMatrixTitle: "МАТРИЦА АКТИВНОСТИ ПО ГОДАМ И МЕСЯЦАМ (2012–2026)",
+      climatologyTitle: "14-ЛЕТНЯЯ МЕСЯЧНАЯ КЛИМАТОЛОГИЯ И ТРЕНДЫ",
+      recordYearsTitle: "ИСТОРИЧЕСКИЕ РЕКОРДНЫЕ ПОЖАРНЫЕ СЕЗОНЫ",
+      statusAboveAverage: "ВЫШЕ ИСТОРИЧЕСКОЙ НОРМЫ",
+      statusBelowAverage: "НИЖЕ ИСТОРИЧЕСКОЙ НОРМЫ",
+      percentileRank: "Ранг процентиля:",
+      calibratedCount: "Калиброванные очаги (MODIS-экв.):",
+      rawDetections: "Сырых детекций:",
+      totalFrpLabel: "Суммарная мощность FRP:",
+      baselineAverage: "14-летняя климатическая норма:",
+      sensorCalibrationTitle: "Межсенсорная калибровка (шкала VIIRS ➔ MODIS):",
+      monthDetailsTitle: "Детализация месячной телеметрии и аномалии",
+      selectMonthHint: "Нажмите на ячейку месяца для подробного анализа"
     },
     harmonizer: {
       title: "ОНЛАЙН-ГАРМОНИЗАЦИЯ И ЛАБОРАТОРИЯ CSV",
@@ -471,7 +523,20 @@ export const translations: Record<Language, Translations> = {
       trueEventsLabel: "Eventos Reales:",
       rawDetectionsLabel: "Focos Brutos:",
       avgFrpLabel: "Poder Promedio:",
-      anomalyAlert: "Alerta de Anomalía Operacional:"
+      anomalyAlert: "Alerta de Anomalía Operacional:",
+      heatmapMatrixTitle: "MATRIZ DE ACTIVIDAD AÑO × MES (2012–2026)",
+      climatologyTitle: "CLIMATOLOGÍA Y TENDENCIAS HISTÓRICAS DE 14 AÑOS",
+      recordYearsTitle: "TEMPORADAS RÉCORD HISTÓRICAS",
+      statusAboveAverage: "SUPERIOR AL PROMEDIO HISTÓRICO",
+      statusBelowAverage: "INFERIOR AL PROMEDIO HISTÓRICO",
+      percentileRank: "Rango percentil:",
+      calibratedCount: "Focos calibrados (equiv. MODIS):",
+      rawDetections: "Detecciones brutas:",
+      totalFrpLabel: "Poder Térmico Total:",
+      baselineAverage: "Promedio climatológico 14 años:",
+      sensorCalibrationTitle: "Calibración entre sensores (escala VIIRS ➔ MODIS):",
+      monthDetailsTitle: "Desglose de telemetría mensual y anomalía",
+      selectMonthHint: "Haga clic en una celda de mes para ver detalles"
     },
     harmonizer: {
       title: "MOTOR DE ARMONIZACIÓN EN VIVO Y PRUEBA CSV",
@@ -573,7 +638,20 @@ export const translations: Record<Language, Translations> = {
       trueEventsLabel: "Événements Réels :",
       rawDetectionsLabel: "Détections Brutes :",
       avgFrpLabel: "Puissance Moyenne :",
-      anomalyAlert: "Alerte d'Anomalie Opérationnelle :"
+      anomalyAlert: "Alerte d'Anomalie Opérationnelle :",
+      heatmapMatrixTitle: "MATRICE D'ACTIVITÉ ANNÉE × MOIS (2012–2026)",
+      climatologyTitle: "CLIMATOLOGIE MENSUELLE SUR 14 ANS & TENDANCES",
+      recordYearsTitle: "SAISONS D'INCENDIES RECORDS HISTORIQUES",
+      statusAboveAverage: "SUPÉRIEUR À LA MOYENNE HISTORIQUE",
+      statusBelowAverage: "INFÉRIEUR À LA MOYENNE HISTORIQUE",
+      percentileRank: "Rang percentile :",
+      calibratedCount: "Foyers calibrés (équiv. MODIS) :",
+      rawDetections: "Détections brutes :",
+      totalFrpLabel: "Puissance thermique totale :",
+      baselineAverage: "Moyenne climatologique 14 ans :",
+      sensorCalibrationTitle: "Calibrage inter-capteurs (échelle VIIRS ➔ MODIS) :",
+      monthDetailsTitle: "Détails de télémétrie mensuelle & anomalie",
+      selectMonthHint: "Cliquez sur une case de mois pour inspecter"
     },
     harmonizer: {
       title: "MOTEUR D'HARMONISATION EN DIRECT ET TEST CSV",

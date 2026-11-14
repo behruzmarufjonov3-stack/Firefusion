@@ -69,3 +69,82 @@ export interface RegionSummary {
 }
 
 export type SummaryDataset = Record<string, RegionSummary>;
+
+export interface MonthlyRecord {
+  year: number;
+  month: number;
+  month_name: string;
+  raw_modis_count: number;
+  raw_viirs_count: number;
+  total_raw_count: number;
+  calibrated_count: number;
+  total_frp: number;
+  avg_frp: number;
+  relative_intensity: number; // 0.0 to 1.0 for heatmap coloring
+}
+
+export interface MonthlyClimatology {
+  month: number;
+  month_name: string;
+  mean_count: number;
+  median_count: number;
+  p10_count: number;
+  p25_count: number;
+  p75_count: number;
+  p90_count: number;
+  min_count: number;
+  max_count: number;
+  mean_frp: number;
+}
+
+export interface RecordYearInfo {
+  year: number;
+  annual_calibrated_count: number;
+  is_highest: boolean;
+  note: string;
+}
+
+export interface CurrentPeriodStatus {
+  period: string;
+  month: number;
+  year: number;
+  raw_7day_detections: number;
+  raw_7day_frp: number;
+  month_projected_calibrated: number;
+  baseline_mean: number;
+  baseline_median: number;
+  baseline_p90: number;
+  anomaly_pct: number;
+  percentile_rank: number;
+  is_above_average: boolean;
+  risk_category: RiskCategory;
+}
+
+export interface HistoricalRegionData {
+  region_id: string;
+  region_name: string;
+  bounds: { minLat: number; maxLat: number; minLon: number; maxLon: number };
+  peak_season: string;
+  peak_month: string;
+  calibration: {
+    factor: number;
+    r_squared: number;
+    note: string;
+  };
+  current_status: CurrentPeriodStatus;
+  record_years: RecordYearInfo[];
+  climatology: MonthlyClimatology[];
+  monthly_records: MonthlyRecord[];
+}
+
+export interface HistoricalCalendarData {
+  metadata: {
+    generated_at: string;
+    version: string;
+    description: string;
+    sensors: Array<{ code: string; platform: string; sensor: string; resolution: string; period: string }>;
+    calibration_methodology: string;
+    risk_thresholds: Record<string, string>;
+  };
+  regions: Record<string, HistoricalRegionData>;
+}

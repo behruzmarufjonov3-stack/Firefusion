@@ -1,0 +1,20 @@
+[
+  {
+    "buffer_meters": 750,
+    "raw_detections": 266462,
+    "harmonized_events": 140222,
+    "deduplication_rate_pct": 47.4
+  },
+  {
+    "buffer_meters": 1500,
+    "raw_detections": 266462,
+    "harmonized_events": 101677,
+    "deduplication_rate_pct": 61.8
+  },
+  {
+    "buffer_meters": 3000,
+    "raw_detections": 266462,
+    "harmonized_events": 82283,
+    "deduplication_rate_pct": 69.1
+  }
+]

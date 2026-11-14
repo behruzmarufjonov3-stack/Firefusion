@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://behruzmarufjonov3-stack.github.io/Firefusion/sitemap.xml

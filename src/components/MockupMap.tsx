@@ -5,7 +5,7 @@ import { Crosshair } from 'lucide-react';
 
 interface MockupMapProps {
   events: HarmonizedFireEvent[];
-  selectedRegion: 'amazon' | 'indonesia' | 'global';
+  selectedRegion: 'amazon' | 'indonesia' | 'central_asia' | 'global';
   theme: 'dark' | 'light';
   selectedEvent?: HarmonizedFireEvent | null;
   onSelectEvent?: (event: HarmonizedFireEvent) => void;
@@ -13,9 +13,9 @@ interface MockupMapProps {
 
 const REGION_SETTINGS: Record<string, { center: [number, number]; zoom: number; ringCenter: [number, number]; radii: number[] }> = {
   amazon: {
-    center: [-2.6, 115.5],
+    center: [-4.5, -58.0],
     zoom: 5,
-    ringCenter: [-2.25, 113.82],
+    ringCenter: [-3.52, -55.12],
     radii: [260000, 520000, 860000]
   },
   indonesia: {
@@ -23,6 +23,12 @@ const REGION_SETTINGS: Record<string, { center: [number, number]; zoom: number; 
     zoom: 5,
     ringCenter: [-2.25, 113.82],
     radii: [260000, 520000, 860000]
+  },
+  central_asia: {
+    center: [41.3, 64.5],
+    zoom: 5,
+    ringCenter: [41.37, 60.36],
+    radii: [180000, 360000, 540000]
   },
   global: {
     center: [10, 15],
@@ -100,7 +106,10 @@ export const MockupMap: React.FC<MockupMapProps> = ({
       mapInstanceRef.current.removeLayer(tileLayerRef.current);
     }
 
-    const newTile = L.tileLayer(tileUrl, { maxZoom: 16 }).addTo(mapInstanceRef.current);
+    const newTile = L.tileLayer(tileUrl, {
+      maxZoom: 16,
+      attribution: 'Tiles &copy; Esri &mdash; Data: NASA FIRMS (MODIS MCD14DL, VIIRS VNP14IMGTDL/VJ114IMGTDL/VJ214IMGTDL)'
+    }).addTo(mapInstanceRef.current);
     newTile.bringToBack();
     tileLayerRef.current = newTile;
     mapInstanceRef.current.invalidateSize();

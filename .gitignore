@@ -28,6 +28,12 @@ dist-ssr
 .env.production
 .env.local
 
-# Raw zip datasets
+# Raw datasets and archive extracts
 *.zip
 data/raw/
+data/Modis/
+data/viirs-20/
+data/viirs-21/
+data/*.txt
+data/*.csv
+data/archive/

@@ -1,5 +1,5 @@
 # FireFusion 🛰️🔥
-> **"Harmonizing MODIS and VIIRS into a Unified Fire Intelligence Platform"**
+> **Harmonizing NASA MODIS and VIIRS Telemetry into Unified Active Fire Intelligence and Historical Climatology**
 > 
 > *NASA Space Apps Challenge 2026 Project Submission*
 
@@ -7,45 +7,43 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Leaflet](https://img.shields.io/badge/Leaflet-1.9-199900?logo=leaflet&logoColor=white)](https://leafletjs.com/)
-[![NASA Open Data](https://img.shields.io/badge/NASA%20FIRMS-Open%20Data-E03C31?logo=nasa&logoColor=white)](https://firms.modaps.eosdis.nasa.gov/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+**Live Deployment:** [https://behruzmarufjonov3-stack.github.io/Firefusion/](https://behruzmarufjonov3-stack.github.io/Firefusion/)  
+**Source Repository:** [https://github.com/behruzmarufjonov3-stack/Firefusion.git](https://github.com/behruzmarufjonov3-stack/Firefusion.git)  
+**Data Sources:** NASA FIRMS Open Data (MODIS MCD14DL, VIIRS VNP14IMGTDL, VJ114IMGTDL, VJ214IMGTDL)
 
 ---
 
 ## 1. Executive Summary & The Problem
 
-Wildfires and agricultural burning activity are continuously observed by multiple satellite constellations. However, **the challenge in fire intelligence is not a shortage of detections—it is fragmentation.**
+Earth observation satellites capture thousands of thermal hotspots daily. However, **fire intelligence has historically suffered from multi-satellite sensor fragmentation:**
 
-For over two decades, NASA's **MODIS** (Terra & Aqua, 1 km pixel footprint) and **VIIRS** (Suomi-NPP / NOAA-20 & NOAA-21, 375 m pixel footprint) have collected fire observations with completely different spatial resolutions, optical channels, overpass timings, and detection sensitivities.
+For over two decades, NASA's **MODIS** (Terra and Aqua, 1 km pixel footprint at nadir) and **VIIRS** (Suomi-NPP, NOAA-20, and NOAA-21, 375 m pixel footprint) have collected fire observations across different spatial resolutions, optical channels, equatorial overpass times, and detection sensitivity thresholds.
 
-Because raw detections cannot be directly compared:
-- **Emergency Responders** chase duplicate alarms caused by multi-satellite overpasses of the same blaze.
-- **Land Managers & Scientists** cannot establish consistent 20-year historical baselines without sensor distortion.
-- **Decision Makers** see contradictory fire counts rather than unified physical fire events.
+Because raw detections from overlapping orbits cannot be directly aggregated without calibration:
+1. **Emergency Responders** encounter duplicate alarms caused by multiple satellite passes detecting the same physical blaze within minutes or hours.
+2. **Scientists & Land Managers** cannot construct continuous multi-decadal historical burning calendars without sensor bias (VIIRS detects ~3.2x–4.8x more active fire pixels than MODIS for identical fire regimes due to sub-pixel sensitivity).
+3. **Decision Makers** lack a standardized metric to determine whether the current month's fire activity is normal or an anomalous extreme compared to multi-year climatology.
 
-**FireFusion** solves this crisis through an automated geospatial-temporal harmonization engine, introducing the novel **Fire Agreement Index (FAI)** and an interactive **Burning Activity Calendar**.
-
----
-
-## 2. Core Scientific Innovation: Fire Agreement Index (FAI)
-
-FireFusion introduces the **Fire Agreement Index (FAI)**—a quantitative confidence metric that weights spatial-temporal sensor consensus across satellite constellations:
-
-| FAI Score | Multi-Sensor Agreement Criteria | Operational Confidence Meaning |
-| :---: | :--- | :--- |
-| **100** | **MODIS + NOAA-20 + NOAA-21** | **Absolute Consensus**: All 3 independent satellite systems verified the active fire. |
-| **90** | **MODIS + VIIRS (NOAA-20 or NOAA-21)** | **Cross-Platform Consensus**: Multi-resolution validation across 1km and 375m sensors. |
-| **75** | **NOAA-20 + NOAA-21 (Dual VIIRS)** | **Constellation Consensus**: Validated by both 375m imaging channels. |
-| **50** | **Single Sensor (Nominal / High Conf)** | **Single Sensor Observation**: Verified detection without secondary overpass confirmation. |
-| **25** | **Single Sensor (Low Confidence)** | **Preliminary Alert**: Low-confidence detection requiring ground validation. |
+**FireFusion** addresses this challenge through:
+- An open, reproducible **Geospatial-Temporal Harmonization Engine** that clusters multi-sensor hotspots into discrete physical fire events and calculates the **Fire Agreement Index (FAI)**.
+- A multi-year **Burning Activity Calendar** (2012–2026) covering three critical global regions (Indonesia & Malaysia, Uzbekistan & Central Asia, and the Amazon Basin) that evaluates current burning against a 14-year monthly climatology baseline.
 
 ---
 
-## 3. Architecture & Data Flow
+## 2. Harmonization Architecture & Sensor Characteristics
+
+### Satellite Instruments & Datasets Used
+- **MODIS C6.1 (`MCD14DL`):** Terra (10:30 AM/PM overpass) & Aqua (13:30 PM/AM overpass). 1,000 m nadir resolution. Continuous baseline since 2000.
+- **VIIRS Suomi-NPP (`VNP14IMGTDL`):** 375 m I-band active fire product. 13:30 PM/AM overpass. Operational since 2012.
+- **VIIRS NOAA-20 / JPSS-1 (`VJ114IMGTDL`):** 375 m I-band active fire product. Same orbit ~50 minutes separated from S-NPP. Operational since 2018.
+- **VIIRS NOAA-21 / JPSS-2 (`VJ214IMGTDL`):** 375 m I-band active fire product. Operational since 2023.
 
 ```text
        ┌────────────────────────┐      ┌────────────────────────┐      ┌────────────────────────┐
        │   MODIS (Terra/Aqua)   │      │  VIIRS NOAA-20 (J1)    │      │  VIIRS NOAA-21 (J2)    │
-       │   1 km Footprint       │      │   375 m Footprint      │      │   375 m Footprint      │
+       │   1,000 m Footprint    │      │   375 m Footprint      │      │   375 m Footprint      │
        │   Confidence: 0-100%   │      │   Confidence: Low/Nom  │      │   Confidence: Low/Nom  │
        └───────────┬────────────┘      └───────────┬────────────┘      └───────────┬────────────┘
                    │                               │                               │
@@ -53,58 +51,124 @@ FireFusion introduces the **Fire Agreement Index (FAI)**—a quantitative confid
                                            │
                                            ▼
                       ┌──────────────────────────────────────────┐
-                      │    FireFusion Data Harmonization Engine   │
-                      │  - Schema Standardization & Cleaning     │
-                      │  - Spatial Proximity Buffer (~1.5 km)   │
-                      │  - Temporal Window Overlap Matching      │
-                      │  - FRP Calibration & Deduplication       │
+                      │   FireFusion Harmonization Pipeline      │
+                      │  - Normalized Confidence (0-100 Scale)   │
+                      │  - Geodesic Clustering (Haversine Grid)  │
+                      │  - Multi-Sensor Consensus Scoring (FAI)  │
+                      │  - VIIRS-to-MODIS Sensor Calibration     │
                       └────────────────────┬─────────────────────┘
                                            │
                                            ▼
                       ┌──────────────────────────────────────────┐
                       │        Unified Harmonized Records        │
-                      │  - De-duplicated physical events (-56%)  │
-                      │  - Fire Agreement Index (FAI 25 - 100)   │
-                      │  - Regional Fire Risk Index (0 - 100)    │
+                      │  - Deduplicated Physical Fire Events     │
+                      │  - Consensus FAI Score (25 to 100)       │
+                      │  - Climatological Anomaly & Risk Tier    │
                       └────────────────────┬─────────────────────┘
                                            │
          ┌─────────────────────────────────┼─────────────────────────────────┐
          ▼                                 ▼                                 ▼
 ┌─────────────────┐             ┌─────────────────────┐           ┌─────────────────────┐
-│ Interactive     │             │ Burning Activity    │           │ Live Calibration    │
-│ Dark GIS Map    │             │ Calendar & Baseline │           │ Harmonizer Sandbox  │
+│ Interactive     │             │ Multi-Year Burning  │           │ In-Browser CSV      │
+│ Leaflet GIS Map │             │ Activity Calendar   │           │ Harmonizer Sandbox  │
 └─────────────────┘             └─────────────────────┘           └─────────────────────┘
 ```
 
 ---
 
-## 4. Key Results from 7-Day Global Satellite Stream
+## 3. Core Metrics: Fire Agreement Index (FAI) & Climatology
 
-Analysis of the official NASA FIRMS global 7-day dataset (Nov 8 – Nov 14, 2026):
+### Fire Agreement Index (FAI)
+The **Fire Agreement Index (FAI)** is an operational consensus score (0–100) reflecting multi-satellite observational agreement:
 
-- **Total Raw Detections:** 733,470
-- **Total Harmonized Physical Events:** 321,540
-- **Redundancy Reduction Rate:** **56.2% deduplication** (over 411,000 redundant duplicate alarms eliminated!)
-- **Key Regional Focus Areas:**
-  - **Amazon Basin:** 62,471 raw detections → 26,062 harmonized events (58.3% deduplication). Peak FRP: 1,639.8 MW.
-  - **Indonesia & Malaysia:** 16,945 raw detections → 9,749 harmonized events (42.5% deduplication).
-  - **Central Asia & Uzbekistan:** 363 raw detections → 233 harmonized events (35.8% deduplication).
-  - **North America (West):** 5,711 raw detections → 2,477 harmonized events (56.6% deduplication).
-  - **Australia:** 121,590 raw detections → 31,787 harmonized events (73.9% deduplication). Peak FRP: 3,165.8 MW.
+| FAI Score | Multi-Sensor Criteria | Operational Meaning |
+| :---: | :--- | :--- |
+| **100** | **MODIS + NOAA-20 + NOAA-21** | **Triple-Sensor Consensus:** Highest operational confidence; independently verified across both 1 km and 375 m instruments. |
+| **90** | **MODIS + VIIRS (NOAA-20 or 21)** | **Cross-Platform Consensus:** Multi-resolution validation across MODIS and VIIRS platforms. |
+| **75** | **NOAA-20 + NOAA-21 (Dual VIIRS)** | **Constellation Consensus:** Confirmed by both 375m VIIRS instruments within a single diurnal window. |
+| **50** | **Single Sensor (High / Nominal)** | **Single Sensor Detection:** Standard detection without concurrent overpass validation. |
+| **25** | **Single Sensor (Low Confidence)** | **Preliminary Alert:** Sub-pixel detection requiring additional operational verification. |
+
+### Burning Activity Calendar & Climatological Risk
+For any selected region, monthly records from 2012 to 2026 are evaluated against the 14-year baseline distribution (mean $\mu$, median $M$, 10th percentile $p_{10}$, and 90th percentile $p_{90}$):
+- **Anomaly Percentage:** $\Delta = \frac{X_{\text{current}} - \mu}{\mu} \times 100\%$
+- **Percentile Rank:** Percentage of historical years whose burning was below the current period.
+- **Risk Tiers:**
+  - `Low`: Below 10th percentile of historical baseline.
+  - `Moderate`: 10th to 75th percentile (within normal seasonal range).
+  - `High`: 75th to 90th percentile (significantly above historical average).
+  - `Extreme`: $\ge 90\text{th}$ percentile (approaching or exceeding historical records).
 
 ---
 
-## 5. Quickstart & Installation
+## 4. Reproducibility & Sensitivity Analysis
+
+All statistics shown in FireFusion originate from automated scripts located in `/scripts/` that can be executed directly.
+
+### Sensitivity Analysis for Spatial Clustering Buffer
+Deduplication clusters proximate detections of the same fire event across multiple satellite overpasses. The resulting deduplication rate depends directly on the chosen spatial buffer threshold $R$ and temporal window:
+
+| Spatial Buffer ($R$) | Raw Detections Tested | Harmonized Events | Deduplication Rate | Physical Basis & Characteristics |
+| :---: | :---: | :---: | :---: | :--- |
+| **750 m** | 266,462 | 140,222 | **47.4%** | Conservative nadir-only threshold. Minimal merging of off-nadir observations. |
+| **1,500 m** *(Standard)* | 266,462 | 101,677 | **61.8%** | **Standard Recommended Buffer.** Matches 1 km MODIS footprint plus geo-referencing tolerance. |
+| **3,000 m** | 266,462 | 82,283 | **69.1%** | Extended buffer accommodating MODIS scan-edge bow-tie pixel expansion (~2 km × 4.8 km). |
+
+*Note: Deduplication reduces redundant duplicate records of the same physical fire; it is not a measure of false-alarm rejection.*
+
+### How to Re-Run the Pipelines
+
+#### 1. Reproduce 7-Day NRT Clustering & Sensitivity Analysis
+```bash
+# In Node.js environment
+node scripts/reproduce_nrt_stats.cjs
+
+# Or in Python environment
+python scripts/reproduce_nrt_stats.py
+```
+*Outputs: `src/data/sample_events.ts` and `scripts/sensitivity_analysis.json`.*
+
+#### 2. Reproduce Multi-Year Burning Calendar & Climatology
+```bash
+# In Node.js environment
+node scripts/generate_historical_calendar.cjs
+
+# Or in Python pipeline (with pandas / DuckDB)
+python scripts/firms_pipeline.py
+```
+*Outputs: `src/data/historical_calendar.json` (< 300 KB static JSON consumed by frontend).*
+
+---
+
+## 5. Methodology & Limitations
+
+### 1. Spatial Resolution Differences
+- MODIS pixels are $1,000\text{ m} \times 1,000\text{ m}$ at nadir, expanding up to ~10x in area towards scan edge ($\pm 55^\circ$) due to Earth curvature and sensor optical projection (the "bow-tie" effect).
+- VIIRS pixels are $375\text{ m} \times 375\text{ m}$ at nadir, with an on-board pixel aggregation scheme that limits pixel area growth to ~2x at scan edge ($\pm 56^\circ$).
+- As a consequence, VIIRS detects significantly more small, fragmented active fire pixels than MODIS. Cross-calibration models this resolution difference using regional linear scaling factors ($\beta \approx 0.21 - 0.31$, $R^2 \approx 0.82 - 0.91$).
+
+### 2. Overpass Timing & Cloud Obscuration
+- Polar-orbiting satellites provide periodic snapshot observations (MODIS ~10:30/22:30 and ~13:30/01:30 local solar time; VIIRS ~13:30/01:30).
+- Rapid fire spread or short-lived agricultural burns occurring between overpasses are not detected.
+- Heavy cloud cover and thick smoke plumes can obscure thermal infrared signatures, temporarily reducing detection counts.
+
+### 3. Metric Interpretation
+- **FAI Consensus:** Measures agreement across independent satellite instruments; it does not measure burn severity or total consumed acreage.
+- **Fire Radiative Power (FRP):** Measures instantaneous thermal radiation output in megawatts (MW). Peak FRP depends on fuel type, flame front geometry, and atmospheric attenuation.
+
+---
+
+## 6. Quickstart & Installation
 
 ### Prerequisites
-- Node.js (v18+ or v20+)
+- Node.js (v18, v20, or v24)
 - npm or pnpm
 
-### Local Development
+### Local Development Setup
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/firefusion.git
-cd firefusion
+git clone https://github.com/behruzmarufjonov3-stack/Firefusion.git
+cd Firefusion
 
 # Install dependencies
 npm install
@@ -112,8 +176,7 @@ npm install
 # Start development server
 npm run dev
 ```
-
-Visit `http://localhost:3000` to access the live platform.
+Open `http://localhost:3000` in your browser.
 
 ### Production Build
 ```bash
@@ -123,26 +186,23 @@ npm run preview
 
 ---
 
-## 6. NASA Space Apps Judging Rubric Alignment
+## 7. Attributions & Disclosures
 
-1. **Impact:** Eliminates multi-sensor confusion for disaster response teams and land managers, reducing operational false alarms by up to 56%.
-2. **Creativity:** Pioneered the Fire Agreement Index (FAI) and multi-resolution temporal calendar matrix.
-3. **Validity:** Mathematically grounded in satellite footprint physics (MODIS 1km point-spread vs VIIRS 375m sub-kilometer I-bands).
-4. **Relevance:** Directly fulfills the 2026 challenge requirements for cross-sensor harmonization and burning activity calendar generation.
-5. **Presentation:** High-contrast, minimalist NASA command center interface built with strict 3-color palette (Obsidian, White, Thermal Ember).
-
----
-
-## 7. Disclosures & Attributions
-
-### Space Agency Data Attribution
+### Open Data Attributions
 - **NASA FIRMS** (Fire Information for Resource Management System):
-  - MODIS MCD14DL Near-Real-Time (NRT) Active Fire Product (Terra & Aqua).
-  - VIIRS VJ114IMGTDL Near-Real-Time Active Fire Product (Suomi-NPP / NOAA-20).
-  - VIIRS VJ214IMGTDL Near-Real-Time Active Fire Product (NOAA-21).
+  - MODIS MCD14DL Collection 6.1 Active Fire Product (Terra & Aqua).
+  - VIIRS VNP14IMGTDL Active Fire 375m Product (Suomi-NPP).
+  - VIIRS VJ114IMGTDL Active Fire 375m Product (NOAA-20 / JPSS-1).
+  - VIIRS VJ214IMGTDL Active Fire 375m Product (NOAA-21 / JPSS-2).
+- **Basemap:** Esri World Dark Gray & Light Gray Canvas.
 
-### Super Intelligence (SI / AI) Disclosure
-AI language models were used as development accelerators for code scaffolding, geospatial clustering logic review, and documentation synthesis. All algorithms, scientific formulas, and data processing pipelines were engineered and verified by the development team.
+### Artificial Intelligence (AI) Disclosure
+In compliance with NASA Space Apps Challenge guidelines:
+- **AI-Assisted Components:** AI language assistants were utilized for UI layout boilerplate, TypeScript typing scaffolding, and multilingual dictionary drafting (`en`, `uz`, `ru`, `es`, `fr`).
+- **Team Verification:** All mathematical formulas, geospatial clustering algorithms, sensor calibration scaling factors, and FIRMS NRT data ingestion pipelines were engineered, validated, and tested by the team.
+
+### Privacy Notice
+FireFusion runs entirely client-side in the browser. Zero telemetry, cookies, or user identifiers are collected, stored, or transmitted to any remote servers.
 
 ---
 
