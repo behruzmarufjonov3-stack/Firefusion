@@ -1,0 +1,764 @@
+{
+  "global": {
+    "region_name": "Global",
+    "total_raw_detections": 733470,
+    "total_harmonized_events": 321540,
+    "deduplication_rate_pct": 56.2,
+    "avg_frp": 14.4,
+    "max_frp": 3165.8,
+    "avg_confidence": 72.5,
+    "avg_fai": 55.4,
+    "fai_distribution": {
+      "25": 33011,
+      "50": 204587,
+      "75": 61781,
+      "90": 10532,
+      "100": 11629
+    },
+    "sensor_contributions": {
+      "modis": 64409,
+      "noaa20": 340831,
+      "noaa21": 328230
+    },
+    "calendar": [
+      {
+        "date": "2026-11-08",
+        "raw_detections": 131462,
+        "harmonized_events": 55986,
+        "sensor_breakdown": { "modis": 11964, "noaa20": 58739, "noaa21": 60759 },
+        "avg_frp": 15.7,
+        "max_frp": 3165.8,
+        "avg_fai": 54.9,
+        "avg_confidence": 71.7,
+        "risk_index": 61,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Severe thermal radiative anomaly: 3166 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High cluster density: 55,986 harmonized events in 24h." }
+        ]
+      },
+      {
+        "date": "2026-11-09",
+        "raw_detections": 130145,
+        "harmonized_events": 56604,
+        "sensor_breakdown": { "modis": 9620, "noaa20": 63638, "noaa21": 56887 },
+        "avg_frp": 15.1,
+        "max_frp": 1793.1,
+        "avg_fai": 55.0,
+        "avg_confidence": 72.0,
+        "risk_index": 60,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Severe thermal radiative anomaly: 1793 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High cluster density: 56,604 harmonized events in 24h." }
+        ]
+      },
+      {
+        "date": "2026-11-10",
+        "raw_detections": 132590,
+        "harmonized_events": 56825,
+        "sensor_breakdown": { "modis": 11022, "noaa20": 66193, "noaa21": 55375 },
+        "avg_frp": 14.9,
+        "max_frp": 2022.1,
+        "avg_fai": 55.9,
+        "avg_confidence": 73.2,
+        "risk_index": 60,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Severe thermal radiative anomaly: 2022 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High cluster density: 56,825 harmonized events in 24h." }
+        ]
+      },
+      {
+        "date": "2026-11-11",
+        "raw_detections": 109271,
+        "harmonized_events": 48968,
+        "sensor_breakdown": { "modis": 11147, "noaa20": 50326, "noaa21": 47798 },
+        "avg_frp": 13.9,
+        "max_frp": 1960.7,
+        "avg_fai": 55.4,
+        "avg_confidence": 72.6,
+        "risk_index": 60,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Severe thermal anomaly: 1961 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High cluster density: 48,968 harmonized events in 24h." }
+        ]
+      },
+      {
+        "date": "2026-11-12",
+        "raw_detections": 107339,
+        "harmonized_events": 47020,
+        "sensor_breakdown": { "modis": 9252, "noaa20": 49061, "noaa21": 49026 },
+        "avg_frp": 13.8,
+        "max_frp": 1562.1,
+        "avg_fai": 55.7,
+        "avg_confidence": 72.2,
+        "risk_index": 60,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Severe thermal anomaly: 1562 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High cluster density: 47,020 harmonized events in 24h." }
+        ]
+      },
+      {
+        "date": "2026-11-13",
+        "raw_detections": 98295,
+        "harmonized_events": 44102,
+        "sensor_breakdown": { "modis": 9089, "noaa20": 42827, "noaa21": 46379 },
+        "avg_frp": 13.4,
+        "max_frp": 1025.1,
+        "avg_fai": 55.6,
+        "avg_confidence": 72.9,
+        "risk_index": 60,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Thermal anomaly: 1025 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High cluster density: 44,102 harmonized events in 24h." }
+        ]
+      },
+      {
+        "date": "2026-11-14",
+        "raw_detections": 24368,
+        "harmonized_events": 12035,
+        "sensor_breakdown": { "modis": 2315, "noaa20": 10047, "noaa21": 12006 },
+        "avg_frp": 10.6,
+        "max_frp": 595.7,
+        "avg_fai": 54.4,
+        "avg_confidence": 75.3,
+        "risk_index": 58,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Thermal anomaly: 596 MW peak FRP." }
+        ]
+      }
+    ]
+  },
+  "amazon": {
+    "region_name": "Amazon Basin",
+    "total_raw_detections": 62471,
+    "total_harmonized_events": 26062,
+    "deduplication_rate_pct": 58.3,
+    "avg_frp": 15.2,
+    "max_frp": 1639.8,
+    "avg_confidence": 75.8,
+    "avg_fai": 57.0,
+    "fai_distribution": {
+      "25": 1454,
+      "50": 17989,
+      "75": 3952,
+      "90": 1243,
+      "100": 1424
+    },
+    "sensor_contributions": {
+      "modis": 7363,
+      "noaa20": 26694,
+      "noaa21": 28414
+    },
+    "calendar": [
+      {
+        "date": "2026-11-08",
+        "raw_detections": 15027,
+        "harmonized_events": 5527,
+        "sensor_breakdown": { "modis": 1422, "noaa20": 6371, "noaa21": 7234 },
+        "avg_frp": 16.5,
+        "max_frp": 1639.8,
+        "avg_fai": 58.4,
+        "avg_confidence": 76.2,
+        "risk_index": 62,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Thermal anomaly: 1640 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High cluster density: 5527 harmonized events." }
+        ]
+      },
+      {
+        "date": "2026-11-09",
+        "raw_detections": 8880,
+        "harmonized_events": 3820,
+        "sensor_breakdown": { "modis": 1275, "noaa20": 3104, "noaa21": 4501 },
+        "avg_frp": 16.3,
+        "max_frp": 1439.8,
+        "avg_fai": 56.8,
+        "avg_confidence": 74.8,
+        "risk_index": 61,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Thermal anomaly: 1440 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High cluster density: 3820 harmonized events." }
+        ]
+      },
+      {
+        "date": "2026-11-10",
+        "raw_detections": 8129,
+        "harmonized_events": 3390,
+        "sensor_breakdown": { "modis": 1063, "noaa20": 3608, "noaa21": 3458 },
+        "avg_frp": 13.5,
+        "max_frp": 675.0,
+        "avg_fai": 57.3,
+        "avg_confidence": 75.0,
+        "risk_index": 60,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Thermal anomaly: 675 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High cluster density: 3390 harmonized events." }
+        ]
+      },
+      {
+        "date": "2026-11-11",
+        "raw_detections": 9627,
+        "harmonized_events": 4475,
+        "sensor_breakdown": { "modis": 1615, "noaa20": 4130, "noaa21": 3882 },
+        "avg_frp": 16.3,
+        "max_frp": 910.6,
+        "avg_fai": 56.1,
+        "avg_confidence": 75.0,
+        "risk_index": 61,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Thermal anomaly: 911 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High cluster density: 4475 harmonized events." }
+        ]
+      },
+      {
+        "date": "2026-11-12",
+        "raw_detections": 8670,
+        "harmonized_events": 3584,
+        "sensor_breakdown": { "modis": 999, "noaa20": 4321, "noaa21": 3350 },
+        "avg_frp": 15.3,
+        "max_frp": 1562.1,
+        "avg_fai": 57.6,
+        "avg_confidence": 75.6,
+        "risk_index": 61,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Thermal anomaly: 1562 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High cluster density: 3584 harmonized events." }
+        ]
+      },
+      {
+        "date": "2026-11-13",
+        "raw_detections": 8437,
+        "harmonized_events": 3741,
+        "sensor_breakdown": { "modis": 868, "noaa20": 4190, "noaa21": 3379 },
+        "avg_frp": 17.3,
+        "max_frp": 922.4,
+        "avg_fai": 56.1,
+        "avg_confidence": 76.4,
+        "risk_index": 62,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Thermal anomaly: 922 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High cluster density: 3741 harmonized events." }
+        ]
+      },
+      {
+        "date": "2026-11-14",
+        "raw_detections": 3701,
+        "harmonized_events": 1525,
+        "sensor_breakdown": { "modis": 121, "noaa20": 970, "noaa21": 2610 },
+        "avg_frp": 3.6,
+        "max_frp": 106.6,
+        "avg_fai": 55.9,
+        "avg_confidence": 79.6,
+        "risk_index": 56,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "DENSE_CLUSTER", "message": "High cluster density: 1525 harmonized events." }
+        ]
+      }
+    ]
+  },
+  "indonesia": {
+    "region_name": "Indonesia & Malaysia",
+    "total_raw_detections": 16945,
+    "total_harmonized_events": 9749,
+    "deduplication_rate_pct": 42.5,
+    "avg_frp": 8.7,
+    "max_frp": 402.0,
+    "avg_confidence": 74.4,
+    "avg_fai": 53.1,
+    "fai_distribution": {
+      "25": 844,
+      "50": 7204,
+      "75": 1281,
+      "90": 204,
+      "100": 216
+    },
+    "sensor_contributions": {
+      "modis": 1228,
+      "noaa20": 7666,
+      "noaa21": 8051
+    },
+    "calendar": [
+      {
+        "date": "2026-11-08",
+        "raw_detections": 3347,
+        "harmonized_events": 1893,
+        "sensor_breakdown": { "modis": 87, "noaa20": 1303, "noaa21": 1957 },
+        "avg_frp": 8.2,
+        "max_frp": 148.0,
+        "avg_fai": 52.6,
+        "avg_confidence": 74.7,
+        "risk_index": 57,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "DENSE_CLUSTER", "message": "Dense peatland fire cluster: 1893 events." }
+        ]
+      },
+      {
+        "date": "2026-11-09",
+        "raw_detections": 2318,
+        "harmonized_events": 1416,
+        "sensor_breakdown": { "modis": 298, "noaa20": 972, "noaa21": 1048 },
+        "avg_frp": 7.9,
+        "max_frp": 175.0,
+        "avg_fai": 53.0,
+        "avg_confidence": 73.9,
+        "risk_index": 57,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "DENSE_CLUSTER", "message": "High cluster density: 1416 harmonized events." }
+        ]
+      },
+      {
+        "date": "2026-11-10",
+        "raw_detections": 2721,
+        "harmonized_events": 1540,
+        "sensor_breakdown": { "modis": 203, "noaa20": 1422, "noaa21": 1096 },
+        "avg_frp": 9.2,
+        "max_frp": 325.5,
+        "avg_fai": 54.3,
+        "avg_confidence": 76.5,
+        "risk_index": 58,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "DENSE_CLUSTER", "message": "High cluster density: 1540 harmonized events." }
+        ]
+      },
+      {
+        "date": "2026-11-11",
+        "raw_detections": 3908,
+        "harmonized_events": 1960,
+        "sensor_breakdown": { "modis": 227, "noaa20": 1868, "noaa21": 1813 },
+        "avg_frp": 9.1,
+        "max_frp": 402.0,
+        "avg_fai": 54.4,
+        "avg_confidence": 74.5,
+        "risk_index": 58,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "DENSE_CLUSTER", "message": "High cluster density: 1960 harmonized events." }
+        ]
+      },
+      {
+        "date": "2026-11-12",
+        "raw_detections": 1791,
+        "harmonized_events": 1099,
+        "sensor_breakdown": { "modis": 206, "noaa20": 875, "noaa21": 710 },
+        "avg_frp": 8.1,
+        "max_frp": 136.9,
+        "avg_fai": 53.4,
+        "avg_confidence": 73.7,
+        "risk_index": 57,
+        "risk_category": "High",
+        "anomalies": []
+      },
+      {
+        "date": "2026-11-13",
+        "raw_detections": 1307,
+        "harmonized_events": 811,
+        "sensor_breakdown": { "modis": 50, "noaa20": 715, "noaa21": 542 },
+        "avg_frp": 7.8,
+        "max_frp": 334.2,
+        "avg_fai": 51.3,
+        "avg_confidence": 73.9,
+        "risk_index": 56,
+        "risk_category": "High",
+        "anomalies": []
+      },
+      {
+        "date": "2026-11-14",
+        "raw_detections": 1553,
+        "harmonized_events": 1030,
+        "sensor_breakdown": { "modis": 157, "noaa20": 511, "noaa21": 885 },
+        "avg_frp": 10.4,
+        "max_frp": 325.1,
+        "avg_fai": 50.8,
+        "avg_confidence": 72.4,
+        "risk_index": 57,
+        "risk_category": "High",
+        "anomalies": []
+      }
+    ]
+  },
+  "central_asia": {
+    "region_name": "Central Asia & Uzbekistan",
+    "total_raw_detections": 363,
+    "total_harmonized_events": 233,
+    "deduplication_rate_pct": 35.8,
+    "avg_frp": 3.1,
+    "max_frp": 65.0,
+    "avg_confidence": 79.2,
+    "avg_fai": 55.9,
+    "fai_distribution": {
+      "25": 2,
+      "50": 176,
+      "75": 52,
+      "90": 2,
+      "100": 1
+    },
+    "sensor_contributions": {
+      "modis": 11,
+      "noaa20": 165,
+      "noaa21": 187
+    },
+    "calendar": [
+      {
+        "date": "2026-11-08",
+        "raw_detections": 79,
+        "harmonized_events": 59,
+        "sensor_breakdown": { "modis": 8, "noaa20": 32, "noaa21": 39 },
+        "avg_frp": 5.7,
+        "max_frp": 65.0,
+        "avg_fai": 52.5,
+        "avg_confidence": 77.3,
+        "risk_index": 39,
+        "risk_category": "Moderate",
+        "anomalies": []
+      },
+      {
+        "date": "2026-11-09",
+        "raw_detections": 42,
+        "harmonized_events": 29,
+        "sensor_breakdown": { "modis": 1, "noaa20": 16, "noaa21": 25 },
+        "avg_frp": 2.3,
+        "max_frp": 15.4,
+        "avg_fai": 55.7,
+        "avg_confidence": 80.0,
+        "risk_index": 27,
+        "risk_category": "Moderate",
+        "anomalies": []
+      },
+      {
+        "date": "2026-11-10",
+        "raw_detections": 22,
+        "harmonized_events": 13,
+        "sensor_breakdown": { "modis": 0, "noaa20": 11, "noaa21": 11 },
+        "avg_frp": 2.1,
+        "max_frp": 5.7,
+        "avg_fai": 59.6,
+        "avg_confidence": 80.0,
+        "risk_index": 21,
+        "risk_category": "Low",
+        "anomalies": []
+      },
+      {
+        "date": "2026-11-11",
+        "raw_detections": 53,
+        "harmonized_events": 32,
+        "sensor_breakdown": { "modis": 0, "noaa20": 26, "noaa21": 27 },
+        "avg_frp": 1.5,
+        "max_frp": 8.7,
+        "avg_fai": 57.0,
+        "avg_confidence": 80.0,
+        "risk_index": 28,
+        "risk_category": "Moderate",
+        "anomalies": []
+      },
+      {
+        "date": "2026-11-12",
+        "raw_detections": 48,
+        "harmonized_events": 30,
+        "sensor_breakdown": { "modis": 0, "noaa20": 17, "noaa21": 31 },
+        "avg_frp": 2.0,
+        "max_frp": 14.6,
+        "avg_fai": 56.7,
+        "avg_confidence": 80.0,
+        "risk_index": 27,
+        "risk_category": "Moderate",
+        "anomalies": []
+      },
+      {
+        "date": "2026-11-13",
+        "raw_detections": 107,
+        "harmonized_events": 59,
+        "sensor_breakdown": { "modis": 1, "noaa20": 57, "noaa21": 49 },
+        "avg_frp": 2.2,
+        "max_frp": 12.9,
+        "avg_fai": 58.1,
+        "avg_confidence": 79.9,
+        "risk_index": 39,
+        "risk_category": "Moderate",
+        "anomalies": []
+      },
+      {
+        "date": "2026-11-14",
+        "raw_detections": 12,
+        "harmonized_events": 11,
+        "sensor_breakdown": { "modis": 1, "noaa20": 6, "noaa21": 5 },
+        "avg_frp": 5.1,
+        "max_frp": 16.0,
+        "avg_fai": 53.6,
+        "avg_confidence": 78.3,
+        "risk_index": 20,
+        "risk_category": "Low",
+        "anomalies": []
+      }
+    ]
+  },
+  "north_america": {
+    "region_name": "North America (West)",
+    "total_raw_detections": 5711,
+    "total_harmonized_events": 2477,
+    "deduplication_rate_pct": 56.6,
+    "avg_frp": 15.2,
+    "max_frp": 750.5,
+    "avg_confidence": 77.7,
+    "avg_fai": 59.1,
+    "fai_distribution": {
+      "25": 69,
+      "50": 1572,
+      "75": 671,
+      "90": 65,
+      "100": 100
+    },
+    "sensor_contributions": {
+      "modis": 448,
+      "noaa20": 2670,
+      "noaa21": 2593
+    },
+    "calendar": [
+      {
+        "date": "2026-11-08",
+        "raw_detections": 336,
+        "harmonized_events": 183,
+        "sensor_breakdown": { "modis": 11, "noaa20": 129, "noaa21": 196 },
+        "avg_frp": 6.2,
+        "max_frp": 71.5,
+        "avg_fai": 56.6,
+        "avg_confidence": 78.2,
+        "risk_index": 57,
+        "risk_category": "High",
+        "anomalies": []
+      },
+      {
+        "date": "2026-11-09",
+        "raw_detections": 609,
+        "harmonized_events": 298,
+        "sensor_breakdown": { "modis": 76, "noaa20": 288, "noaa21": 245 },
+        "avg_frp": 18.1,
+        "max_frp": 300.7,
+        "avg_fai": 58.7,
+        "avg_confidence": 77.3,
+        "risk_index": 63,
+        "risk_category": "High",
+        "anomalies": []
+      },
+      {
+        "date": "2026-11-10",
+        "raw_detections": 1107,
+        "harmonized_events": 498,
+        "sensor_breakdown": { "modis": 131, "noaa20": 521, "noaa21": 455 },
+        "avg_frp": 17.4,
+        "max_frp": 639.5,
+        "avg_fai": 59.1,
+        "avg_confidence": 76.5,
+        "risk_index": 62,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Thermal anomaly: 640 MW peak FRP." }
+        ]
+      },
+      {
+        "date": "2026-11-11",
+        "raw_detections": 1487,
+        "harmonized_events": 621,
+        "sensor_breakdown": { "modis": 80, "noaa20": 744, "noaa21": 663 },
+        "avg_frp": 14.6,
+        "max_frp": 312.6,
+        "avg_fai": 59.5,
+        "avg_confidence": 77.8,
+        "risk_index": 61,
+        "risk_category": "High",
+        "anomalies": []
+      },
+      {
+        "date": "2026-11-12",
+        "raw_detections": 1525,
+        "harmonized_events": 540,
+        "sensor_breakdown": { "modis": 108, "noaa20": 721, "noaa21": 696 },
+        "avg_frp": 20.4,
+        "max_frp": 750.5,
+        "avg_fai": 61.2,
+        "avg_confidence": 78.4,
+        "risk_index": 64,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Thermal anomaly: 751 MW peak FRP." }
+        ]
+      },
+      {
+        "date": "2026-11-13",
+        "raw_detections": 529,
+        "harmonized_events": 267,
+        "sensor_breakdown": { "modis": 38, "noaa20": 231, "noaa21": 260 },
+        "avg_frp": 8.0,
+        "max_frp": 123.1,
+        "avg_fai": 57.7,
+        "avg_confidence": 78.3,
+        "risk_index": 58,
+        "risk_category": "High",
+        "anomalies": []
+      },
+      {
+        "date": "2026-11-14",
+        "raw_detections": 118,
+        "harmonized_events": 70,
+        "sensor_breakdown": { "modis": 4, "noaa20": 36, "noaa21": 78 },
+        "avg_frp": 3.0,
+        "max_frp": 42.0,
+        "avg_fai": 55.0,
+        "avg_confidence": 79.1,
+        "risk_index": 43,
+        "risk_category": "Moderate",
+        "anomalies": []
+      }
+    ]
+  },
+  "australia": {
+    "region_name": "Australia",
+    "total_raw_detections": 121590,
+    "total_harmonized_events": 31787,
+    "deduplication_rate_pct": 73.9,
+    "avg_frp": 29.2,
+    "max_frp": 3165.8,
+    "avg_confidence": 73.7,
+    "avg_fai": 62.0,
+    "fai_distribution": {
+      "25": 2463,
+      "50": 15515,
+      "75": 9172,
+      "90": 1812,
+      "100": 2825
+    },
+    "sensor_contributions": {
+      "modis": 10683,
+      "noaa20": 55628,
+      "noaa21": 55279
+    },
+    "calendar": [
+      {
+        "date": "2026-11-08",
+        "raw_detections": 29931,
+        "harmonized_events": 7292,
+        "sensor_breakdown": { "modis": 2025, "noaa20": 13737, "noaa21": 14169 },
+        "avg_frp": 37.1,
+        "max_frp": 3165.8,
+        "avg_fai": 61.6,
+        "avg_confidence": 74.9,
+        "risk_index": 72,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Severe anomaly: 3166 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High density: 7292 harmonized events." }
+        ]
+      },
+      {
+        "date": "2026-11-09",
+        "raw_detections": 24638,
+        "harmonized_events": 6706,
+        "sensor_breakdown": { "modis": 2613, "noaa20": 11463, "noaa21": 10562 },
+        "avg_frp": 34.5,
+        "max_frp": 1793.1,
+        "avg_fai": 61.2,
+        "avg_confidence": 73.0,
+        "risk_index": 70,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Severe anomaly: 1793 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High density: 6706 harmonized events." }
+        ]
+      },
+      {
+        "date": "2026-11-10",
+        "raw_detections": 16890,
+        "harmonized_events": 4626,
+        "sensor_breakdown": { "modis": 1240, "noaa20": 8303, "noaa21": 7347 },
+        "avg_frp": 24.7,
+        "max_frp": 2002.1,
+        "avg_fai": 60.9,
+        "avg_confidence": 73.6,
+        "risk_index": 66,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Severe anomaly: 2002 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High density: 4626 harmonized events." }
+        ]
+      },
+      {
+        "date": "2026-11-11",
+        "raw_detections": 15245,
+        "harmonized_events": 3877,
+        "sensor_breakdown": { "modis": 1075, "noaa20": 7385, "noaa21": 6785 },
+        "avg_frp": 24.2,
+        "max_frp": 1337.5,
+        "avg_fai": 61.9,
+        "avg_confidence": 74.3,
+        "risk_index": 66,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Severe anomaly: 1338 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High density: 3877 harmonized events." }
+        ]
+      },
+      {
+        "date": "2026-11-12",
+        "raw_detections": 15326,
+        "harmonized_events": 3748,
+        "sensor_breakdown": { "modis": 1912, "noaa20": 6374, "noaa21": 7040 },
+        "avg_frp": 25.2,
+        "max_frp": 833.7,
+        "avg_fai": 66.6,
+        "avg_confidence": 73.4,
+        "risk_index": 68,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Thermal anomaly: 834 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High density: 3748 harmonized events." }
+        ]
+      },
+      {
+        "date": "2026-11-13",
+        "raw_detections": 12555,
+        "harmonized_events": 3295,
+        "sensor_breakdown": { "modis": 1114, "noaa20": 5564, "noaa21": 5877 },
+        "avg_frp": 21.2,
+        "max_frp": 1025.1,
+        "avg_fai": 63.8,
+        "avg_confidence": 74.3,
+        "risk_index": 65,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Thermal anomaly: 1025 MW peak FRP." },
+          { "type": "DENSE_CLUSTER", "message": "High density: 3295 harmonized events." }
+        ]
+      },
+      {
+        "date": "2026-11-14",
+        "raw_detections": 7005,
+        "harmonized_events": 2243,
+        "sensor_breakdown": { "modis": 704, "noaa20": 2802, "noaa21": 3499 },
+        "avg_frp": 24.1,
+        "max_frp": 595.7,
+        "avg_fai": 57.8,
+        "avg_confidence": 71.0,
+        "risk_index": 65,
+        "risk_category": "High",
+        "anomalies": [
+          { "type": "EXTREME_FRP", "message": "Thermal anomaly: 596 MW peak FRP." }
+        ]
+      }
+    ]
+  }
+}
